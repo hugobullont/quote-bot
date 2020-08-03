@@ -35,6 +35,10 @@ client.on('message', msg => {
             });
         });
     }
+
+    if (msg.content === '!help') {
+        msg.reply(QuotesController.getHelpMessage);
+    }
 });
 
 // Create an event listener for new guild members
@@ -48,7 +52,7 @@ client.on('guildMemberAdd', member => {
   });
 
 client.login(process.env.DISCORD_TOKEN);
-
+client.user.setStatus('!help');
 
 //json-server
 server.use(middlewares)

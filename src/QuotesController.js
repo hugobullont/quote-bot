@@ -42,3 +42,14 @@ exports.addMessage = async (message) => {
         })
     });
 }
+
+exports.getHelpMessage = (message) => {
+    return "MonseBot es un bot que se encarga de almacenar citas."+
+	"\n\n**!agregar <message>** -> Se utiliza para agregar una cita."+
+	"\n\n**!dimeloTodo** -> Muestra todas las citas."+
+	/*"\n\n**!airhorn** -> Suena una corneta mágicamente en el chat de voz." +
+	"\n\n**!kk** -> Mágicamente Verdugo te dirá que eres caca."+*/
+	"\n\n**!help** -> Muestra este sensual mensaje."+
+	"\n\n**dimelo** -> Cualquier uso de dimelo dentro del chat hará que el bot lance una frase al azar. También con tilde. Gracias Crema."+
+	"\n\n Los mantenimientos son esporádicos.";
+}
