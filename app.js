@@ -22,7 +22,7 @@ client.on('ready', () => {
 
 //onMessage
 client.on('message', msg => {
-    if(msg.client.user.id !== client.user.id){ 
+    if(!msg.author.bot){ 
         if (msg.content === 'dimelo' || msg.content === 'dímelo' || msg.content.includes('dimelo') || msg.content.includes('dímelo')) {
             QuotesController.getRandomMessage().then((message)=>{
                 msg.channel.send(message);
