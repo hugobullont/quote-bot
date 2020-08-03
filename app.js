@@ -12,6 +12,12 @@ require('dotenv').config();
 //ReadyBot
 client.on('ready', () => {
     console.log('Logged in.')
+    client.user.setStatus('available')
+    client.user.setPresence({
+        game: {
+            name: '!help',
+        }
+    });
 });
 
 //onMessage
@@ -52,7 +58,6 @@ client.on('guildMemberAdd', member => {
   });
 
 client.login(process.env.DISCORD_TOKEN);
-client.user.setStatus('!help');
 
 //json-server
 server.use(middlewares)
