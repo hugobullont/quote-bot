@@ -21,29 +21,31 @@ client.on('ready', () => {
 });
 
 //onMessage
-client.on('message', msg => { 
-    if (msg.content === 'dimelo' || msg.content === 'dímelo' || msg.content.includes('dimelo') || msg.content.includes('dímelo')) {
-        QuotesController.getRandomMessage().then((message)=>{
-            msg.channel.send(message);
-        });
-    }
-
-    if (msg.content.includes('!agregar')) {
-        let message = msg.content.substring('!agregar '.length);
-        QuotesController.addMessage(message);
-        msg.reply('Mensaje Añadido!!!')
-    }
-
-    if (msg.content.includes('!dimeloTodo') || msg.content.includes('!dímeloTodo')) {
-        QuotesController.getAllMessages().then((value)=>{
-            value.forEach(element => {
-                msg.channel.send(element.message);
+client.on('message', msg => {
+    if(msg.client.user.id !== client.user.id){ 
+        if (msg.content === 'dimelo' || msg.content === 'dímelo' || msg.content.includes('dimelo') || msg.content.includes('dímelo')) {
+            QuotesController.getRandomMessage().then((message)=>{
+                msg.channel.send(message);
             });
-        });
-    }
+        }
 
-    if (msg.content === '!help') {
-        msg.reply(QuotesController.getHelpMessage);
+        if (msg.content.includes('!agregar')) {
+            let message = msg.content.substring('!agregar '.length);
+            QuotesController.addMessage(message);
+            msg.reply('Mensaje Añadido!!!')
+        }
+
+        if (msg.content.includes('!dimeloTodo') || msg.content.includes('!dímeloTodo')) {
+            QuotesController.getAllMessages().then((value)=>{
+                value.forEach(element => {
+                    msg.channel.send(element.message);
+                });
+            });
+        }
+
+        if (msg.content === '!help') {
+            msg.reply(QuotesController.getHelpMessage());
+        }
     }
 });
 
