@@ -12,6 +12,7 @@ let songRequests = [];
 
 require('dotenv').config();
 
+
 //ReadyBot
 client.on('ready', () => {
     console.log('Logged in.')
@@ -100,6 +101,6 @@ client.login(process.env.DISCORD_TOKEN);
 //json-server
 server.use(middlewares)
 server.use(router)
-server.listen(3000, () => {
+server.listen(process.env.PORT, () => {
   console.log('JSON Server is running')
 })
