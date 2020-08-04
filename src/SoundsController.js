@@ -34,6 +34,15 @@ exports.playRones = async (connection,msg) => {
     });
 }
 
+exports.playHola = async (connection, msg) => {
+    const dispatcher = connection.play(fs.createReadStream('./assets/hola.ogg'), {
+        type: 'ogg/opus',
+    });
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playBoyCry = async (connection,msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/boy-cry.mp3');
