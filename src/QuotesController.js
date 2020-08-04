@@ -54,6 +54,7 @@ exports.getHelpMessage = (message) => {
 	/*"\n\n**!airhorn** -> Suena una corneta mágicamente en el chat de voz." +
 	"\n\n**!kk** -> Mágicamente Verdugo te dirá que eres caca."+*/
     "\n\n**!help** -> Muestra este sensual mensaje."+
+    "\n\n**!rones** -> CRU-CIAL  DE-TER-MI-NAN-TE"+
     "\n\n**!claps** -> Mágicamente te aplauden. Al fin."+
     "\n\n**!cry** -> Mágicamente un niño llorando para recordarte lo feo que puede llegar a ser tener hijos."+
     "\n\n**!play <YouTubeURL>** -> Una Radio Sensualona."+

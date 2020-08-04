@@ -1,4 +1,5 @@
 const ytdl = require('ytdl-core-discord');
+const fs = require('fs');
 
 exports.playFromYTURL = async (connection, url, msg) => {
     const dispatcher = connection.play(await ytdl(url), { type: 'opus' });
@@ -21,6 +22,15 @@ exports.playRadioYTURL = async (connection, msg, songArray) => {
         } else {
             await this.playRadioYTURL(connection,msg,songArray);
         }
+    });
+}
+
+exports.playRones = async (connection,msg) => {
+    const dispatcher = connection.play(fs.createReadStream('../assets/rones.ogg'), {
+        type: 'ogg/opus',
+    });
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
     });
 }
 
