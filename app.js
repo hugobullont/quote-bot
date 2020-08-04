@@ -8,6 +8,8 @@ const middlewares = jsonServer.defaults()
 const QuotesController = require('./src/QuotesController');
 const SoundsController = require('./src/SoundsController');
 
+let songRequests = [];
+
 require('dotenv').config();
 
 //ReadyBot
@@ -66,13 +68,18 @@ client.on('message', async msg => {
             }
         }
 
-        if (msg.content.includes('!playYT')) {
-            let url = msg.content.substring('!playYT '.length);
-            if (msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join();
-                await SoundsController.playFromYTURL(connection, url,msg);
+        if (msg.content.includes('!play')) {
+            let url = msg.content.substring('!play '.length);
+            if(songRequests.length === 0){
+                songRequests.push({url: url});
+                if (msg.member.voice.channel) {
+                    const connection = await msg.member.voice.channel.join();
+                    await SoundsController.playRadioYTURL(connection,msg, songRequests);
+                } else {
+                    msg.reply('Debes estar en un canal de voz!');
+                }
             } else {
-                msg.reply('Debes estar en un canal de voz!');
+                songRequests.push({url: url});
             }
         }
     }
