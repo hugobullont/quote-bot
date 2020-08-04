@@ -9,7 +9,7 @@ exports.playFromYTURL = async (connection, url, msg) => {
 }
 
 exports.playBoyCry = async (connection,msg) => {
-    const dispatcher = connection.play('../assets/boy-cry.mp3');
+    const dispatcher = connection.play('/var/development/LoudyBot/quote-bot/assets/boy-cry.mp3');
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
     });
