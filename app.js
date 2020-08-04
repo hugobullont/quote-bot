@@ -65,6 +65,16 @@ client.on('message', async msg => {
                 msg.reply('Debes estar en un canal de voz!');
             }
         }
+
+        if (msg.content.includes('!playYT')) {
+            let url = msg.content.substring('!playYT '.length);
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playFromYTURL(connection, url,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
     }
 });
 
