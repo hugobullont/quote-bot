@@ -26,7 +26,7 @@ exports.playRadioYTURL = async (connection, msg, songArray) => {
 }
 
 exports.playRones = async (connection,msg) => {
-    const dispatcher = connection.play(fs.createReadStream('../assets/rones.ogg'), {
+    const dispatcher = connection.play(fs.createReadStream('/var/development/LoudyBot/quote-bot/assets/rones.ogg'), {
         type: 'ogg/opus',
     });
     dispatcher.on('finish', () => {
