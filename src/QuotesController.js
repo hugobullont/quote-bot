@@ -1,8 +1,10 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 
+let apiURL = 'http://localhost:' + process.env.PORT;
+
 exports.getRandomMessage = async () => {
-    let response = await fetch('http://localhost:3000/messages',{
+    let response = await fetch(apiURL + '/messages',{
         mode: 'no-cors',
         method: 'GET',
         headers: { 
@@ -16,7 +18,7 @@ exports.getRandomMessage = async () => {
 }
 
 exports.getAllMessages = async () => {
-    let response = await fetch('http://localhost:3000/messages',{
+    let response = await fetch(apiURL + '/messages',{
         mode: 'no-cors',
         method: 'GET',
         headers: { 
@@ -30,7 +32,7 @@ exports.getAllMessages = async () => {
 
 exports.addMessage = async (message) => {
     let finalMessage = '```' + message + '```';
-    let response = await fetch('http://localhost:3000/messages',{
+    let response = await fetch(apiURL + '/messages',{
         mode: 'no-cors',
         method: 'POST',
         headers: {
