@@ -6,6 +6,7 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
 const QuotesController = require('./src/QuotesController');
+const SoundsController = require('./src/SoundsController');
 
 require('dotenv').config();
 
@@ -21,7 +22,7 @@ client.on('ready', () => {
 });
 
 //onMessage
-client.on('message', msg => {
+client.on('message', async msg => {
     if(!msg.author.bot){ 
         if (msg.content === 'dimelo' || msg.content === 'dímelo' || msg.content.includes('dimelo') || msg.content.includes('dímelo')) {
             QuotesController.getRandomMessage().then((message)=>{
@@ -45,6 +46,24 @@ client.on('message', msg => {
 
         if (msg.content === '!help') {
             msg.reply(QuotesController.getHelpMessage());
+        }
+
+        if (msg.content === '!claps') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playFromYTURL(connection, 'https://www.youtube.com/watch?v=jDOrc8FmDy4',msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
+
+        if (msg.content === '!cry') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playBoyCry(connection,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
         }
     }
 });
