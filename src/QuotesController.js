@@ -1,6 +1,8 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 
+require('dotenv').config({ path: '../.env' });
+
 let apiURL = 'http://localhost:' + process.env.PORT;
 
 exports.getRandomMessage = async () => {
