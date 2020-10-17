@@ -53,6 +53,7 @@ exports.getHelpMessage = (message) => {
 	"\n\n**!dimeloTodo** -> Muestra todas las citas."+
 	/*"\n\n**!airhorn** -> Suena una corneta mágicamente en el chat de voz." +
 	"\n\n**!kk** -> Mágicamente Verdugo te dirá que eres caca."+*/
+    "\n\n**!agregarTwitchStream <username>** -> Se utiliza para agregar un usuario de Twitch a las alertas."+
     "\n\n**!help** -> Muestra este sensual mensaje."+
     "\n\n**!rones** -> CRU-CIAL  DE-TER-MI-NAN-TE (Audio)"+
     "\n\n**!hola** -> Quiero verte. Quiero verte. (Audio)"+

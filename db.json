@@ -36,5 +36,12 @@
       "id": 9,
       "message": "```Eres de Ínfima Categoría - Verdugo```"
     }
+  ],
+  "streams":[
+    {
+      "id": 1,
+      "username": "genvidia",
+      "isLive": false
+    }
   ]
 }

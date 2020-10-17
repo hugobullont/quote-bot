@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({disableEveryone: false});
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
@@ -7,11 +7,17 @@ const middlewares = jsonServer.defaults()
 
 const QuotesController = require('./src/QuotesController');
 const SoundsController = require('./src/SoundsController');
+const StreamsController = require('./src/StreamsController');
 
 let songRequests = [];
 
 require('dotenv').config();
 
+let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
+let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
+let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
+
+let streamsHook = new Discord.WebhookClient(streamHookID, streamHookToken);
 
 //ReadyBot
 client.on('ready', () => {
@@ -37,6 +43,12 @@ client.on('message', async msg => {
             let message = msg.content.substring('!agregar '.length);
             QuotesController.addMessage(message);
             msg.reply('Mensaje Añadido!!!')
+        }
+
+        if (msg.content.includes('!agregarTwitchStream')) {
+            let username = msg.content.substring('!agregarTwitchStream '.length);
+            StreamsController.addStreamer(username);
+            msg.reply('Streamer Añadido!!!');
         }
 
         if (msg.content.includes('!dimeloTodo') || msg.content.includes('!dímeloTodo')) {
@@ -101,20 +113,39 @@ client.on('message', async msg => {
                 songRequests.push({url: url});
             }
         }
+
+        if (msg.content.includes('!stop')) {
+            if (msg.member.voice.channel) {
+                await msg.member.voice.channel.leave();
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
     }
 });
 
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+    const channel = member.guild.channels.cache.find(ch => ch.name === greetingsChannel);
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
     channel.send(`Bienvenido al Server, ${member}`);
-  });
+});
 
 client.login(process.env.DISCORD_TOKEN);
+
+//STREAM INTERVALS
+setInterval(() => {
+    StreamsController.getStreamersInfo().then(streamersAlive => {
+        streamersAlive.forEach(stream => {
+            streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
+            `\n\n Únete en https://twitch.tv/${stream['display_name']}`
+            )
+        })
+    })
+}, 10000);
 
 //json-server
 server.use(middlewares)
