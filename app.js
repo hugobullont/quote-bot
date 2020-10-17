@@ -14,6 +14,7 @@ let songRequests = [];
 require('dotenv').config();
 
 let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
+let botChannelOwner = process.env.DISCORD_OWNER_STREAM;
 let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
 let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
 let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
@@ -151,9 +152,15 @@ setInterval(() => {
             const channel = client.channels.cache.find(ch => ch.name === streamChannel);
             console.log(channel);
             if (!channel) return;
-            channel.send(`${stream['display_name']} está en vivo!` +
-            `\n\n Únete en https://twitch.tv/${stream['display_name']}`
-            );
+            let message = '';
+            if(stream['display_name'] === botChannelOwner){
+                message = `@everyone ${stream['display_name']} está en vivo!` +
+                `\n\n Únete en https://twitch.tv/${stream['display_name']}`
+            } else {
+                message = `${stream['display_name']} está en vivo!` +
+                `\n\n Únete en https://twitch.tv/${stream['display_name']}`
+            }
+            channel.send(message);
         });
     })
 }, 10000);
