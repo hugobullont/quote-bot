@@ -139,13 +139,15 @@ client.login(process.env.DISCORD_TOKEN);
 //STREAM INTERVALS
 setInterval(() => {
     StreamsController.getStreamersInfo().then(streamersAlive => {
+        console.log('StreamersInfo response');
+        console.log(streamersAlive);
         streamersAlive.forEach(stream => {
             /*streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             )*/
             console.log('Inside StreamersAlive');
             console.log(stream);
-            const channel = client.channels.cache.find(ch => ch.name === greetingsChannel);
+            const channel = client.channels.cache.find(ch => ch.name === 'streams');
             console.log(channel);
             if (!channel) return;
             channel.send(`@everyone ${stream['display_name']} está en vivo!` +
