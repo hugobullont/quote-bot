@@ -144,7 +144,7 @@ setInterval(() => {
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             )*/
 
-            const channel = client.channels.cache.find(ch => ch.name === 'streams');
+            const channel = client.channels.cache.find(ch => ch.name === greetingsChannel);
             if (!channel) return;
             channel.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
