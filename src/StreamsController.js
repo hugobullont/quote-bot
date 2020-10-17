@@ -19,7 +19,7 @@ exports.getStreamersInfo = async () => {
     
     let streamers = await response.json();
 
-    for(var i = 0; i<streamers.length(); i++){
+    for(var i = 0; i<streamers.length; i++){
         let streamer = streamers[i];
         let streamInfoResponse = await fetch(twitchAPIURL + `search/channels?query=${streamer.username}`,{
             mode: 'no-cors',
