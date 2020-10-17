@@ -53,6 +53,16 @@ client.on('message', async msg => {
             msg.reply('Streamer Añadido!!!');
         }
 
+        if (msg.content.includes('!streamers')) {
+            let message = 'Los streamers con alertas son: '
+            StreamsController.getStreamers().then(value => {
+                value.forEach(element => {
+                    message = message + `\n\n https://twitch.tv/${element.username}`;
+                })
+                msg.reply(message);
+            })
+        }
+
         if (msg.content.includes('!dimeloTodo') || msg.content.includes('!dímeloTodo')) {
             QuotesController.getAllMessages().then((value)=>{
                 value.forEach(element => {

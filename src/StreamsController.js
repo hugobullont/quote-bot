@@ -53,6 +53,19 @@ exports.getStreamersInfo = async () => {
 
 };
 
+exports.getStreamers = async () => {
+    let response = await fetch(apiURL + '/streams',{
+        mode: 'no-cors',
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'}
+        });
+    
+    let streamers = await response.json();
+    return streamers;
+}
+
 exports.addStreamer = async (username) => {
     let response = await fetch(apiURL + '/streams',{
         mode: 'no-cors',
