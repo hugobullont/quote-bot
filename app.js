@@ -14,6 +14,7 @@ let songRequests = [];
 require('dotenv').config();
 
 let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
+let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
 let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
 let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
 
@@ -147,10 +148,10 @@ setInterval(() => {
             )*/
             console.log('Inside StreamersAlive');
             console.log(stream);
-            const channel = client.channels.cache.find(ch => ch.name === 'streams');
+            const channel = client.channels.cache.find(ch => ch.name === streamChannel);
             console.log(channel);
             if (!channel) return;
-            channel.send(`@everyone ${stream['display_name']} está en vivo!` +
+            channel.send(`${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             );
         });
