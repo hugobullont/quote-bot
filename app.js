@@ -143,8 +143,10 @@ setInterval(() => {
             /*streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             )*/
-
+            console.log('Inside StreamersAlive');
+            console.log(stream);
             const channel = client.channels.cache.find(ch => ch.name === greetingsChannel);
+            console.log(channel);
             if (!channel) return;
             channel.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
