@@ -39,7 +39,7 @@ client.on('message', async msg => {
             });
         }
 
-        if (msg.content.includes('!agregar')) {
+        if (msg.content.includes('!agregar') && !msg.content.includes('!agregarTwitchStream')) {
             let message = msg.content.substring('!agregar '.length);
             QuotesController.addMessage(message);
             msg.reply('Mensaje Añadido!!!')
