@@ -140,10 +140,16 @@ client.login(process.env.DISCORD_TOKEN);
 setInterval(() => {
     StreamsController.getStreamersInfo().then(streamersAlive => {
         streamersAlive.forEach(stream => {
-            streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
+            /*streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
-            )
-        })
+            )*/
+
+            const channel = client.channels.cache.find(ch => ch.name === 'streams');
+            if (!channel) return;
+            channel.send(`@everyone ${stream['display_name']} está en vivo!` +
+            `\n\n Únete en https://twitch.tv/${stream['display_name']}`
+            );
+        });
     })
 }, 10000);
 
