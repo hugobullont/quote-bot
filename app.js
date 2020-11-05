@@ -45,12 +45,24 @@ client.on('message', async msg => {
             let query = msg.content.substring('!buscarQuote '.length);
             QuotesController.searchMessage(query).then((result) => {
                 if (result.length > 0) {
+                    msg.reply('Hemos encontrado las siguientes Quotes. Puedes usar el Id para borrarlas. ');
                     result.forEach(element => {
-                        msg.channel.send(`ID: ${element.id}`);
+                        msg.channel.send(`Id: ${element.id}`);
                         msg.channel.send(element.message);
                     })
                 } else {
                     msg.reply('No hay Quotes que coincidan con la búsqueda. :( ');
+                }
+            })
+        }
+
+        if (msg.content.includes('!eliminarQuote')) {
+            let id = msg.content.substring('!eliminarQuote '.length);
+            QuotesController.deleteMessage(id).then(response => {
+                if (response.httpStatus === 200) {
+                    msg.reply('Borramos la Quote correctamente!');
+                } else {
+                    msg.reply('Bueno, parece que esa Quote no existe. Al menos no en este mundo.');
                 }
             })
         }

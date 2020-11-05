@@ -74,8 +74,10 @@ exports.addMessage = async (message) => {
 
 exports.getHelpMessage = (message) => {
     return ("MonseBot es un bot que se encarga de almacenar Quotes."+
-	"\n\n**!agregar <message>** -> Se utiliza para agregar un Quote."+
-	"\n\n**!dimeloTodo** -> Muestra todas las citas."+
+	"\n\n**!agregar <message>** -> Se utiliza para agregar una Quote."+
+    "\n\n**!dimeloTodo** -> Muestra todas las Quotes."+
+    "\n\n**!buscarQuote <query>** -> Busca alguna Quote en específico. Se retornará junto a su Id. "+
+    "\n\n**!eliminarQuote <id>** -> Hay Quotes que ya cumplieron su ciclo con nosotros y es preciso eliminarlas."+
 	/*"\n\n**!airhorn** -> Suena una corneta mágicamente en el chat de voz." +
 	"\n\n**!kk** -> Mágicamente Verdugo te dirá que eres caca."+*/
     "\n\n**!agregarTwitchStream <username>** -> Se utiliza para agregar un usuario de Twitch a las alertas."+
