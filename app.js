@@ -60,7 +60,7 @@ client.on('message', async msg => {
         }
 
         if (msg.content.includes('!eliminarQuote')) {
-            if(msg.member.roles.find(role => role.name === "Monses")){
+            if(msg.member.roles.cache.find(role => role.name === "Monses")){
                 let id = msg.content.substring('!eliminarQuote '.length);
                 QuotesController.deleteMessage(id).then(response => {
                     if (response.httpStatus === 200) {
