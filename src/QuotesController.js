@@ -32,7 +32,7 @@ exports.searchMessage = async (query) => {
 }
 
 exports.deleteMessage = async (id) => {
-    let response = await fetch(apiURL + 'messages/' + id, {
+    let response = await fetch(apiURL + '/messages/' + id, {
         mode: 'no-cors',
         method: 'DELETE',
         headers: { 
