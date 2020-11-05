@@ -19,6 +19,31 @@ exports.getRandomMessage = async () => {
     return value[messageNumber].message;
 }
 
+exports.searchMessage = async (query) => {
+    let response = await fetch(apiURL + '/messages?q='+ query, {
+        mode: 'no-cors',
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'}
+    });
+    let value = await response.json();
+    return value;
+}
+
+exports.deleteMessage = async (id) => {
+    let response = await fetch(apiURL + 'messages/' + id, {
+        mode: 'no-cors',
+        method: 'DELETE',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'}
+    });
+    let value = await response.json();
+    value.httpStatus = response.status;
+    return value;
+}
+
 exports.getAllMessages = async () => {
     let response = await fetch(apiURL + '/messages',{
         mode: 'no-cors',

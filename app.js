@@ -41,6 +41,20 @@ client.on('message', async msg => {
             });
         }
 
+        if (msg.content.includes('!buscarQuote')) {
+            let query = msg.content.substring('!buscarQuote '.length);
+            QuotesController.searchMessage(query).then((result) => {
+                if (result.length > 0) {
+                    result.forEach(element => {
+                        msg.channel.send(`ID: ${element.id}`);
+                        msg.channel.send(element.message);
+                    })
+                } else {
+                    msg.reply('No hay Quotes que coincidan con la búsqueda. :( ');
+                }
+            })
+        }
+
         if (msg.content.includes('!agregar') && !msg.content.includes('!agregarTwitchStream')) {
             let message = msg.content.substring('!agregar '.length);
             QuotesController.addMessage(message);
