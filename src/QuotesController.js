@@ -89,6 +89,7 @@ exports.getHelpMessage = (message) => {
     "\n\n**!claps** -> Mágicamente te aplauden. Al fin. (Audio)"+
     "\n\n**!cry** -> Mágicamente un niño llorando para recordarte lo feo que puede llegar a ser tener hijos. (Audio)"+
     "\n\n**!play <YouTubeURL>** -> Una Radio Sensualona. (Audio)"+
+    "\n\n**!stop** -> PAUSA!"+
 	"\n\n**dimelo** -> Cualquier uso de dimelo dentro del chat hará que el bot lance una frase al azar. También con tilde. Gracias Crema."+
 	"\n\n Los mantenimientos son esporádicos.");
 }
