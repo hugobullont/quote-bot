@@ -60,14 +60,18 @@ client.on('message', async msg => {
         }
 
         if (msg.content.includes('!eliminarQuote')) {
-            let id = msg.content.substring('!eliminarQuote '.length);
-            QuotesController.deleteMessage(id).then(response => {
-                if (response.httpStatus === 200) {
-                    msg.reply('Borramos la Quote correctamente!');
-                } else {
-                    msg.reply('Bueno, parece que esa Quote no existe. Al menos no en este mundo.');
-                }
-            })
+            if(msg.member.roles.find(role => role.name === "Monses")){
+                let id = msg.content.substring('!eliminarQuote '.length);
+                QuotesController.deleteMessage(id).then(response => {
+                    if (response.httpStatus === 200) {
+                        msg.reply('Borramos la Quote correctamente!');
+                    } else {
+                        msg.reply('Bueno, parece que esa Quote no existe. Al menos no en este mundo.');
+                    }
+                });
+            } else {
+                msg.reply('Mira, cómo te explico. No tienes permisos para esto.')
+            }
         }
 
         if (msg.content.includes('!agregar') && !msg.content.includes('!agregarTwitchStream')) {
