@@ -48,6 +48,9 @@ client.on('message', async msg => {
                     msg.reply('Hemos encontrado las siguientes Quotes. Puedes usar el Id para borrarlas. ');
                     result.forEach(element => {
                         msg.channel.send(`Id: ${element.id}`);
+                        if(element.author){
+                            msg.channel.send(`Creador: ${element.author}`);
+                        }
                         msg.channel.send(element.message);
                     })
                 } else {
@@ -69,7 +72,7 @@ client.on('message', async msg => {
 
         if (msg.content.includes('!agregar') && !msg.content.includes('!agregarTwitchStream')) {
             let message = msg.content.substring('!agregar '.length);
-            QuotesController.addMessage(message);
+            QuotesController.addMessage(message, msg.author.username);
             msg.reply('Mensaje Añadido!!!')
         }
 

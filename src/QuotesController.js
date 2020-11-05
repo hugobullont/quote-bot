@@ -57,7 +57,7 @@ exports.getAllMessages = async () => {
     return value;
 }
 
-exports.addMessage = async (message) => {
+exports.addMessage = async (message, author) => {
     let finalMessage = '```' + message + '```';
     let response = await fetch(apiURL + '/messages',{
         mode: 'no-cors',
@@ -67,7 +67,8 @@ exports.addMessage = async (message) => {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            message: finalMessage
+            message: finalMessage,
+            author: author,
         })
     });
 }
