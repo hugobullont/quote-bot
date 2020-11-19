@@ -8,6 +8,7 @@ const middlewares = jsonServer.defaults()
 const QuotesController = require('./src/QuotesController');
 const SoundsController = require('./src/SoundsController');
 const StreamsController = require('./src/StreamsController');
+const NewsFeedController = require('./src/NewsFeedController');
 
 let songRequests = [];
 
@@ -16,6 +17,7 @@ require('dotenv').config();
 let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
 let botChannelOwner = process.env.DISCORD_OWNER_STREAM;
 let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
+let newsChannel = process.env.DISCORD_NEWS_CHANNEL;
 let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
 let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
 
@@ -205,6 +207,20 @@ setInterval(() => {
             }
             channel.send(message);
         });
+    })
+}, 10000);
+
+
+//NEWS INTERVAL
+
+setInterval(() => {
+    NewsFeedController.getNewsFeed().then(newsArray => {
+        newsArray.forEach(article => {
+            const channel = client.channels.cache.find(ch => ch.name === newsChannel);
+            if (!channel) return;
+            let message = `${article.title} - ${article.link}`;
+            channel.send(message);
+        })
     })
 }, 10000);
 

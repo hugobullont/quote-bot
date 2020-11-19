@@ -15,6 +15,7 @@
     "ffmpeg-static": "^4.2.7",
     "json-server": "^0.16.2",
     "node-fetch": "^2.6.1",
+    "rss-parser": "^3.9.0",
     "ytdl-core-discord": "^1.2.4"
   }
 }
