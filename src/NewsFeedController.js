@@ -1,6 +1,8 @@
 let Parser = require('rss-parser');
 let rssParser = new Parser();
 
+const fetch = require('node-fetch');
+
 require('dotenv').config();
 
 let apiURL = 'http://localhost:' + process.env.PORT;
