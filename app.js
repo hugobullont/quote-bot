@@ -218,7 +218,7 @@ setInterval(() => {
         newsArray.forEach(article => {
             const channel = client.channels.cache.find(ch => ch.name === newsChannel);
             if (!channel) return;
-            let message = `${article.title} - ${article.link}`;
+            let message = `${article.title} \n ${article.link}`;
             channel.send(message);
         })
     })
