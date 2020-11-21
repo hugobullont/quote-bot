@@ -17,11 +17,7 @@ require('dotenv').config();
 let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
 let botChannelOwner = process.env.DISCORD_OWNER_STREAM;
 let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
-let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
-let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
 let adminRole = process.env.DISCORD_ADMIN_ROLE;
-
-let streamsHook = new Discord.WebhookClient(streamHookID, streamHookToken);
 
 //ReadyBot
 client.on('ready', () => {
