@@ -26,6 +26,7 @@ exports.getNewsFeed = async () => {
         let feed = await rssParser.parseURL(currentFeed.url);
         let lastFeedArticle = feed.items[0];
         if (lastFeedArticle.guid !== currentFeed.lastID) {
+            lastFeedArticle.channel = currentFeed.channel;
             finalArticles.push(lastFeedArticle);
             currentFeed.lastID = lastFeedArticle.guid;
 
