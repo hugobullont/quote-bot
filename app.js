@@ -20,6 +20,7 @@ let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
 let newsChannel = process.env.DISCORD_NEWS_CHANNEL;
 let streamHookID = process.env.DISCORD_STREAM_HOOK_ID;
 let streamHookToken = process.env.DISCORD_STREAM_HOOK_TOKEN;
+let adminRole = process.env.DISCORD_ADMIN_ROLE;
 
 let streamsHook = new Discord.WebhookClient(streamHookID, streamHookToken);
 
@@ -62,7 +63,7 @@ client.on('message', async msg => {
         }
 
         if (msg.content.includes('!eliminarQuote')) {
-            if(msg.member.roles.cache.find(role => role.name === "Monses")){
+            if(msg.member.roles.cache.find(role => role.name === adminRole)){
                 let id = msg.content.substring('!eliminarQuote '.length);
                 QuotesController.deleteMessage(id).then(response => {
                     if (response.httpStatus === 200) {
