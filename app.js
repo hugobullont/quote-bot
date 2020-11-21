@@ -37,7 +37,7 @@ client.on('ready', () => {
 //onMessage
 client.on('message', async msg => {
     if(!msg.author.bot){ 
-        if (msg.content === 'dimelo' || msg.content === 'dímelo' || msg.content.includes('dimelo') || msg.content.includes('dímelo')) {
+        if (msg.content.toLowerCase() === 'dimelo' || msg.content.toLowerCase() === 'dímelo' || msg.content.toLowerCase().includes('dimelo') || msg.content.toLowerCase().includes('dímelo')) {
             QuotesController.getRandomMessage().then((message)=>{
                 msg.channel.send(message);
             });
