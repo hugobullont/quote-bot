@@ -212,7 +212,9 @@ setInterval(() => {
 setInterval(() => {
     NewsFeedController.getNewsFeed().then(newsArray => {
         newsArray.forEach(article => {
-            const channel = client.channels.cache.find(ch => ch.id === article.channel);
+            console.log(article.channel);
+            const channel = client.channels.cache.find(ch => {console.log(ch.id); return ch.id === article.channel;});
+            console.log(channel);
             if (!channel) return;
             let message = `${article.title} \n ${article.link}`;
             channel.send(message);
