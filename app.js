@@ -18,6 +18,7 @@ let greetingsChannel = process.env.DISCORD_GREETING_CHANNEL;
 let botChannelOwner = process.env.DISCORD_OWNER_STREAM;
 let streamChannel = process.env.DISCORD_STREAM_CHANNEL;
 let adminRole = process.env.DISCORD_ADMIN_ROLE;
+let radioEnabled = process.env.ENABLE_RADIO;
 
 //ReadyBot
 client.on('ready', () => {
@@ -142,7 +143,7 @@ client.on('message', async msg => {
             }
         }
 
-        if (msg.content.includes('!play')) {
+        if (msg.content.includes('!play') && radioEnabled) {
             let url = msg.content.substring('!play '.length);
             if(songRequests.length === 0){
                 songRequests.push({url: url});
