@@ -47,6 +47,19 @@ exports.getStreamersInfo = async () => {
                 body: JSON.stringify(streamer)
             });
         }
+
+        if(!streamInfo['is_live'] && streamer.isLive) {
+            streamer.isLive = false;
+            await fetch(apiURL + `/streams/${streamer.id}`,{
+                mode: 'no-cors',
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(streamer)
+            });
+        }
     }
     
     return streamsAlive;
