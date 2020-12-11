@@ -205,7 +205,7 @@ setInterval(() => {
             channel.send(message);
         });
     })
-}, 2000);
+}, 10000);
 
 
 //NEWS INTERVAL
