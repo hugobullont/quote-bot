@@ -18,7 +18,7 @@ exports.getStreamersInfo = async () => {
         });
     
     let streamers = await response.json();
-
+    
     for(var i = 0; i<streamers.length; i++){
         let streamer = streamers[i];
         let streamInfoResponse = await fetch(twitchAPIURL + `search/channels?query=${streamer.username}`,{
@@ -32,6 +32,7 @@ exports.getStreamersInfo = async () => {
             }
         });
         let streamInfoJSON = await streamInfoResponse.json();
+        console.log(streamInfoJSON);
         let streamInfo = streamInfoJSON.data[0];
 
         if(streamInfo['is_live'] && !streamer.isLive){
