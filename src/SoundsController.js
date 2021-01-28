@@ -4,6 +4,8 @@ const fs = require('fs');
 exports.playFromYTURL = async (connection, url, msg) => {
     const dispatcher = connection.play(await ytdl(url), { type: 'opus' });
 
+    dispatcher.setVolume(0.5);
+
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
     });
@@ -11,6 +13,8 @@ exports.playFromYTURL = async (connection, url, msg) => {
 
 exports.playRadioYTURL = async (connection, msg, songArray) => {
     const dispatcher = connection.play(await ytdl(songArray[0].url), { type: 'opus' });
+    
+    dispatcher.setVolume(0.5);
 
     dispatcher.on('finish', async () => {
         console.log(songArray);
@@ -29,6 +33,9 @@ exports.playRones = async (connection,msg) => {
     const dispatcher = connection.play(fs.createReadStream('./assets/rones.ogg'), {
         type: 'ogg/opus',
     });
+
+    dispatcher.setVolume(0.5);
+
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
     });
@@ -38,6 +45,9 @@ exports.playHola = async (connection, msg) => {
     const dispatcher = connection.play(fs.createReadStream('./assets/hola.ogg'), {
         type: 'ogg/opus',
     });
+
+    dispatcher.setVolume(0.5);
+
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
     });
@@ -46,6 +56,22 @@ exports.playHola = async (connection, msg) => {
 exports.playBoyCry = async (connection,msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/boy-cry.mp3');
+
+    dispatcher.setVolume(0.5);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
+
+exports.playOhNo = async (connection, msg) => {
+    const dispatcher = connection.play(fs.createReadStream('./assets/ohno.ogg'), {
+        type: 'ogg/opus',
+    });
+
+    dispatcher.setVolume(0.5);
+
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
     });
