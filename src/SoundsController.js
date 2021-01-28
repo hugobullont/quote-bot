@@ -69,7 +69,7 @@ exports.playOhNo = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/ohNo.mp3');
 
-    dispatcher.setVolume(0.5);
+    dispatcher.setVolume(0.3);
 
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
