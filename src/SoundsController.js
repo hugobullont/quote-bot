@@ -66,9 +66,8 @@ exports.playBoyCry = async (connection,msg) => {
 
 
 exports.playOhNo = async (connection, msg) => {
-    const dispatcher = connection.play(fs.createReadStream('./assets/ohno.ogg'), {
-        type: 'ogg/opus',
-    });
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/ohNo.mp3');
 
     dispatcher.setVolume(0.5);
 
