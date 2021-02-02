@@ -152,6 +152,15 @@ client.on('message', async msg => {
             }
         }
 
+        if (msg.content === '!vuela') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playVuela(connection,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
+
         if (msg.content === '!cry') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();

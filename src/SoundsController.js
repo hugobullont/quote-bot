@@ -86,3 +86,14 @@ exports.playRun = async (connection, msg) => {
         msg.member.voice.channel.leave();
     });
 }
+
+exports.playVuela = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/vuela.mp3');
+
+    dispatcher.setVolume(0.3);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
