@@ -97,3 +97,14 @@ exports.playVuela = async (connection, msg) => {
         msg.member.voice.channel.leave();
     });
 }
+
+exports.playRedoble = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/redoble.mp3');
+
+    dispatcher.setVolume(0.3);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
