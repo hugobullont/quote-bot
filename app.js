@@ -179,6 +179,15 @@ client.on('message', async msg => {
             }
         }
 
+        if (msg.content === '!gregorio') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playGregorio(connection,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
+
         if (msg.content === '!seMarcho' || msg.content === '!semarcho') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();

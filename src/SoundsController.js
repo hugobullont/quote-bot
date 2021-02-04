@@ -130,3 +130,14 @@ exports.playYSeMarcho = async (connection, msg) => {
         msg.member.voice.channel.leave();
     });
 }
+
+exports.playGregorio = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/gregorio.mp3');
+
+    dispatcher.setVolume(0.4);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
