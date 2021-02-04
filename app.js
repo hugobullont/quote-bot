@@ -170,6 +170,15 @@ client.on('message', async msg => {
             }
         }
 
+        if (msg.content === '!seMarcho' || msg.content === '!semarcho') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playYSeMarcho(connection,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
+
         if (msg.content === '!cry') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();
