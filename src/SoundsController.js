@@ -91,7 +91,7 @@ exports.playRun = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/run.mp3');
 
-    dispatcher.setVolume(0.3);
+    dispatcher.setVolume(0.2);
 
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
