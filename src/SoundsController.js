@@ -76,6 +76,17 @@ exports.playOhNo = async (connection, msg) => {
     });
 }
 
+exports.playRunComedy = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/run-comedy.mp3');
+
+    dispatcher.setVolume(0.3);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playRun = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/run.mp3');
