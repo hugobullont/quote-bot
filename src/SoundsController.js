@@ -131,6 +131,17 @@ exports.playYSeMarcho = async (connection, msg) => {
     });
 }
 
+exports.playCheChe = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/cheche.mp3');
+
+    dispatcher.setVolume(0.3);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playGregorio = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/gregorio.mp3');
