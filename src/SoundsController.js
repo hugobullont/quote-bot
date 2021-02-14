@@ -152,3 +152,14 @@ exports.playGregorio = async (connection, msg) => {
         msg.member.voice.channel.leave();
     });
 }
+
+exports.playMeArrecha = async (connection, msg) => {
+    //Debes ingresar la ruta completa.
+    const dispatcher = connection.play('./assets/meArrecha.mp3');
+
+    dispatcher.setVolume(0.2);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
