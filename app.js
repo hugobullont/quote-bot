@@ -110,9 +110,7 @@ client.on('message', async msg => {
 
         if(msg.content === '!sech') {
             GifController.getRandomGIFbyTag('sech').then((value) => {
-                const embed = new Discord.MessageEmbed()
-                .setURL(value.embed_url);
-                msg.channel.send(embed);
+                msg.channel.send(value.embed_url);
             });
         }
 
