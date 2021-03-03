@@ -9,6 +9,7 @@ const QuotesController = require('./src/QuotesController');
 const SoundsController = require('./src/SoundsController');
 const StreamsController = require('./src/StreamsController');
 const NewsFeedController = require('./src/NewsFeedController');
+const GifController = require('./src/GifController');
 
 let songRequests = [];
 
@@ -105,6 +106,14 @@ client.on('message', async msg => {
 
         if (msg.content === '!help') {
             msg.reply(QuotesController.getHelpMessage());
+        }
+
+        if(msg.content === '!sech') {
+            GifController.getRandomGIFbyTag('sech').then((value) => {
+                const embed = new Discord.MessageEmbed()
+                .setURL(value.embed_url);
+                msg.channel.send(embed);
+            });
         }
 
         if (msg.content === '!claps') {
