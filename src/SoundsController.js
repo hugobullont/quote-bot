@@ -151,6 +151,16 @@ exports.playRaea = async (connection, msg) => {
     });
 }
 
+exports.playPorQueSigues = async (connection, msg) => {
+    const dispatcher = connection.play('./assets/pqsel.mp3');
+
+    dispatcher.setVolume(0.3);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playCheChe = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/cheche.mp3');
