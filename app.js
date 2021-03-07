@@ -109,7 +109,7 @@ client.on('message', async msg => {
         }
 
         if(msg.content === '!sech') {
-            GifController.getRandomGIFbyTag('sech').then((value) => {
+            GifController.getRandomGIFbyTag('sech otro trago').then((value) => {
                 msg.channel.send(value.embed_url);
             });
         }
