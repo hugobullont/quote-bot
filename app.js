@@ -236,7 +236,7 @@ client.on('message', async msg => {
                 const connection = await msg.member.voice.channel.join();
                 await SoundsController.playRaea(connection,msg);
             } else {
-                msg.reply('Debes estar en un canal de voz!');
+                msg.reply('RAEA CONCHATUMADRE!');
             }
         }
 
