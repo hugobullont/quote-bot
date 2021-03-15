@@ -249,6 +249,15 @@ client.on('message', async msg => {
             }
         }
 
+        if (msg.content === '!chupasela') {
+            if (msg.member.voice.channel) {
+                const connection = await msg.member.voice.channel.join();
+                await SoundsController.playChupasela(connection,msg);
+            } else {
+                msg.reply('Debes estar en un canal de voz!');
+            }
+        }
+
         if (msg.content === '!porQueSiguesConEl') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();
