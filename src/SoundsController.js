@@ -174,7 +174,7 @@ exports.playJeepeta = async (connection, msg) => {
 exports.playChupasela = async (connection, msg) => {
     const dispatcher = connection.play('./assets/chupasela.mp3');
 
-    dispatcher.setVolume(0.3);
+    dispatcher.setVolume(0.4);
 
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
