@@ -98,7 +98,7 @@ client.on('message', async msg => {
 
         if(msg.content.includes('!subscribe')) {
             let streamer = msg.content.substring('!subscribe '.length);
-            let username = msg.author.tag;
+            let username = msg.author;
 
             StreamsController.subscribeToStreamer(username, streamer).then((value) => {
                 msg.reply(`¡Te has suscrito a ${streamer} correctamente!`);
@@ -348,7 +348,7 @@ setInterval(() => {
             let message = '';
             let subscribers = '';
             stream.insideDBInfo.subscribers.forEach((sub) => {
-                subscribers = subscribers + `@${sub} `;
+                subscribers = subscribers + `${sub} `;
             });
 
             message = `${subscribers} ${stream['display_name']} está en vivo!` +
