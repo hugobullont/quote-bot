@@ -34,7 +34,7 @@ exports.getStreamersInfo = async () => {
         let streamInfoJSON = await streamInfoResponse.json();
         console.log(streamInfoJSON);
         let streamInfo = streamInfoJSON.data[0];
-
+        streamInfo.insideDBInfo = streamer;
         if(streamInfo['is_live'] && !streamer.isLive){
             streamsAlive.push(streamInfo);
             streamer.isLive = true;
@@ -66,6 +66,57 @@ exports.getStreamersInfo = async () => {
     return streamsAlive;
 
 };
+
+exports.subscribeToStreamer = async (username, streamer) => {
+    let responseStreamers = await fetch(apiURL + '/streams',{
+        mode: 'no-cors',
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'}
+        });
+    
+    let streamers = await responseStreamers.json();
+    let streamerObj = null;
+
+    streamers.forEach((strObj) => {
+        if(strObj.username === streamer){
+            streamerObj = strObj;
+        }
+    });
+
+    if(streamerObj !== null) {
+        streamerObj.subscribers.push(username);
+
+        await fetch(apiURL + `/streams/${streamerObj.id}`,{
+            mode: 'no-cors',
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(streamerObj)
+        });
+    } else {
+        let subscribersArray = [];
+        subscribersArray.push(username);
+        await fetch(apiURL + '/streams',{
+            mode: 'no-cors',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                username: streamer,
+                isLive: false,
+                subscribers: subscribersArray,
+            })
+        });
+    }
+    
+    return true;
+}
 
 exports.getStreamers = async () => {
     let response = await fetch(apiURL + '/streams',{

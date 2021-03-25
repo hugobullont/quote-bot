@@ -96,6 +96,15 @@ client.on('message', async msg => {
             })
         }
 
+        if(msg.content.includes('!subscribe')) {
+            let streamer = msg.content.substring('!subscribe '.length);
+            let username = msg.author.tag;
+
+            StreamsController.subscribeToStreamer(username, streamer).then((value) => {
+                msg.reply(`¡Te has suscrito a ${streamer} correctamente!`);
+            })
+        }
+
         if (msg.content.includes('!dimeloTodo') || msg.content.includes('!dímeloTodo')) {
             QuotesController.getAllMessages().then((value)=>{
                 value.forEach(element => {
@@ -337,13 +346,22 @@ setInterval(() => {
             console.log(channel);
             if (!channel) return;
             let message = '';
-            if(stream['display_name'] === botChannelOwner){
+            let subscribers = '';
+            stream.insideDBInfo.subscribers.forEach((sub) => {
+                subscribers = subscribers + `@${sub} `;
+            });
+
+            message = `${subscribers} ${stream['display_name']} está en vivo!` +
+                `\n\n Únete en https://twitch.tv/${stream['display_name']}`
+
+            /*if(stream['display_name'] === botChannelOwner){
                 message = `@everyone ${stream['display_name']} está en vivo!` +
                 `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             } else {
                 message = `${stream['display_name']} está en vivo!` +
                 `\n\n Únete en https://twitch.tv/${stream['display_name']}`
-            }
+            }*/
+
             channel.send(message);
         });
     })
