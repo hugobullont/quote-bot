@@ -141,7 +141,8 @@ exports.addStreamer = async (username) => {
         },
         body: JSON.stringify({
             username: username,
-            isLive: false
+            isLive: false,
+            subscribers: [],
         })
     });
 }
