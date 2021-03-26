@@ -348,7 +348,7 @@ setInterval(() => {
             let message = '';
             let subscribers = '';
             stream.insideDBInfo.subscribers.forEach((sub) => {
-                subscribers = subscribers + `${sub.tag} `;
+                subscribers = subscribers + `<@${sub.id}> `;
             });
 
             message = `${subscribers} ${stream['display_name']} está en vivo!` +
