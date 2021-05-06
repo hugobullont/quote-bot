@@ -245,7 +245,7 @@ client.on('message', async msg => {
                 const connection = await msg.member.voice.channel.join();
                 await SoundsController.playRaea(connection,msg);
             } else {
-                msg.send('RAEA CONCHATUMADRE!');
+                msg.channel.send('RAEA CONCHATUMADRE!');
             }
         }
 
@@ -263,7 +263,7 @@ client.on('message', async msg => {
                 const connection = await msg.member.voice.channel.join();
                 await SoundsController.playChupasela(connection,msg);
             } else {
-                msg.send('CHÚPASELA PUES! MALDITO CHUPAPINGA, EL MONO TE DIREMOS');
+                msg.channel.send('CHÚPASELA PUES! MALDITO CHUPAPINGA, EL MONO TE DIREMOS');
             }
         }
 
