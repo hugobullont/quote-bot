@@ -267,6 +267,10 @@ client.on('message', async msg => {
             }
         }
 
+        if (msg.content.toLowerCase.includes('ete')) {
+            msg.channel.send('ETE SEEEEEEEEEEECH!');
+        }
+
         if (msg.content === '!porQueSiguesConEl') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();
