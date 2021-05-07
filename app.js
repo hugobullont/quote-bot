@@ -267,7 +267,7 @@ client.on('message', async msg => {
             }
         }
 
-        if (msg.content.toLowerCase.includes('ete')) {
+        if (msg.content.toLowerCase().includes('ete')) {
             msg.channel.send('ETE SEEEEEEEEEEECH!');
         }
 
