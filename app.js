@@ -123,6 +123,13 @@ client.on('message', async msg => {
             });
         }
 
+        if (msg.content.includes('!gif')) {
+            let message = msg.content.substring('!gif '.length);
+            GifController.getRandomGIFbyTag(message).then((value) => {
+                msg.channel.send(value.embed_url);
+            });
+        }
+
         if (msg.content === '!claps') {
             if (msg.member.voice.channel) {
                 const connection = await msg.member.voice.channel.join();
