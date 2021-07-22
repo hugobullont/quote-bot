@@ -184,7 +184,7 @@ exports.playChupasela = async (connection, msg) => {
 exports.playTranquilos = async (connection, msg) => {
     const dispatcher = connection.play('./assets/tranquilos.mp3');
 
-    dispatcher.setVolume(0.7);
+    dispatcher.setVolume(0.9);
 
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
