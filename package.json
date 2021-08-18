@@ -9,7 +9,7 @@
   "author": "hugobullont",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.6.0",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.1",
     "ffmpeg-static": "^4.3.0",
