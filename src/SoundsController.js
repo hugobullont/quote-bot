@@ -191,6 +191,16 @@ exports.playTranquilos = async (connection, msg) => {
     });
 }
 
+exports.playHey = async (connection, msg) => {
+    const dispatcher = connection.play('./assets/hey.mp3');
+
+    dispatcher.setVolume(1.0);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playCagon = async (connection, msg) => {
     const dispatcher = connection.play('./assets/cagon.mp3');
 
