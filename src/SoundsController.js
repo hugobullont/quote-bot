@@ -201,6 +201,16 @@ exports.playHey = async (connection, msg) => {
     });
 }
 
+exports.playCulos = async (connection, msg) => {
+    const dispatcher = connection.play('./assets/culos.mp3');
+
+    dispatcher.setVolume(0.7);
+
+    dispatcher.on('finish', () => {
+        msg.member.voice.channel.leave();
+    });
+}
+
 exports.playCagon = async (connection, msg) => {
     const dispatcher = connection.play('./assets/cagon.mp3');
 
