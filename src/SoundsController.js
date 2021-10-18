@@ -236,7 +236,7 @@ exports.playGregorio = async (connection, msg) => {
     //Debes ingresar la ruta completa.
     const dispatcher = connection.play('./assets/gregorio.mp3');
 
-    dispatcher.setVolume(0.6);
+    dispatcher.setVolume(1);
 
     dispatcher.on('finish', () => {
         msg.member.voice.channel.leave();
