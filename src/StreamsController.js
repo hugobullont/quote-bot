@@ -33,33 +33,36 @@ exports.getStreamersInfo = async () => {
         });
         let streamInfoJSON = await streamInfoResponse.json();
         console.log(streamInfoJSON);
-        let streamInfo = streamInfoJSON.data[0];
-        streamInfo.insideDBInfo = streamer;
-        if(streamInfo['is_live'] && !streamer.isLive){
-            streamsAlive.push(streamInfo);
-            streamer.isLive = true;
-            await fetch(apiURL + `/streams/${streamer.id}`,{
-                mode: 'no-cors',
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(streamer)
-            });
-        }
+        if(streamInfoJSON.data.length > 0) {
+            let streamInfo = streamInfoJSON.data[0];
 
-        if(!streamInfo['is_live'] && streamer.isLive) {
-            streamer.isLive = false;
-            await fetch(apiURL + `/streams/${streamer.id}`,{
-                mode: 'no-cors',
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(streamer)
-            });
+            streamInfo.insideDBInfo = streamer;
+            if(streamInfo['is_live'] && !streamer.isLive){
+                streamsAlive.push(streamInfo);
+                streamer.isLive = true;
+                await fetch(apiURL + `/streams/${streamer.id}`,{
+                    mode: 'no-cors',
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(streamer)
+                });
+            }
+
+            if(!streamInfo['is_live'] && streamer.isLive) {
+                streamer.isLive = false;
+                await fetch(apiURL + `/streams/${streamer.id}`,{
+                    mode: 'no-cors',
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(streamer)
+                });
+            }
         }
     }
     
