@@ -31,8 +31,8 @@ exports.getStreamersInfo = async () => {
                 'client-id': clientID
             }
         });
+        console.log(streamInfoResponse);
         let streamInfoJSON = await streamInfoResponse.json();
-        console.log(streamInfoJSON);
         if(streamInfoJSON.data.length > 0) {
             let streamInfo = streamInfoJSON.data[0];
 
