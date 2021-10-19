@@ -403,7 +403,7 @@ setInterval(() => {
             channel.send(message);
         });
     })
-}, 60000);
+}, 10000);
 
 
 //NEWS INTERVAL
