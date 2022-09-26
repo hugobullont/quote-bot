@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({disableEveryone: false});
+const client = new Discord.Client({disableEveryone: false, intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES]});
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
@@ -34,7 +34,7 @@ client.on('ready', () => {
 
 //onMessage
 client.on('message', async msg => {
-    console.log(msg.content);
+    console.log(msg);
     if(!msg.author.bot){ 
         if (msg.content.toLowerCase() === 'dimelo' || msg.content.toLowerCase() === 'dímelo' || msg.content.toLowerCase().includes('dimelo') || msg.content.toLowerCase().includes('dímelo')) {
             QuotesController.getRandomMessage().then((message)=>{
