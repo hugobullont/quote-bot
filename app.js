@@ -373,16 +373,16 @@ client.login(process.env.DISCORD_TOKEN);
 //STREAM INTERVALS
 setInterval(() => {
     StreamsController.getStreamersInfo().then(streamersAlive => {
-        console.log('StreamersInfo response');
-        console.log(streamersAlive);
+        //console.log('StreamersInfo response');
+        //console.log(streamersAlive);
         streamersAlive.forEach(stream => {
             /*streamsHook.send(`@everyone ${stream['display_name']} está en vivo!` +
             `\n\n Únete en https://twitch.tv/${stream['display_name']}`
             )*/
-            console.log('Inside StreamersAlive');
-            console.log(stream);
+            //console.log('Inside StreamersAlive');
+            //console.log(stream);
             const channel = client.channels.cache.find(ch => ch.id === streamChannel);
-            console.log(channel);
+            //console.log(channel);
             if (!channel) return;
             let message = '';
             let subscribers = '';
@@ -412,9 +412,9 @@ setInterval(() => {
 setInterval(() => {
     NewsFeedController.getNewsFeed().then(newsArray => {
         newsArray.forEach(article => {
-            console.log(article.channel);
+            //console.log(article.channel);
             const channel = client.channels.cache.find(ch => {console.log(ch.id); return ch.id === article.channel;});
-            console.log(channel);
+            //console.log(channel);
             if (!channel) return;
             let message = `${article.title} \n ${article.link}`;
             channel.send(message);
