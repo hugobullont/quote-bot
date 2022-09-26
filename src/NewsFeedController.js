@@ -1,7 +1,8 @@
+import fetch from 'node-fetch';
+
 let Parser = require('rss-parser');
 let rssParser = new Parser();
 
-const fetch = require('node-fetch');
 
 require('dotenv').config();
 
