@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 let Parser = require('rss-parser');
 let rssParser = new Parser();
